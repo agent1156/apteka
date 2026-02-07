@@ -1,0 +1,63 @@
+<footer class="bg-dark text-white mt-5">
+    <div class="container py-5">
+        <div class="row">
+            <!-- Колонка 1 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="mb-3">О компании</h5>
+                <p>Краткое описание вашей компании или проекта.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-youtube fs-4"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка 2 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="mb-3">Быстрые ссылки</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">Главная</a></li>
+                    <li class="mb-2"><a href="{% url 'about' %}" class="text-white-50 text-decoration-none">О нас</a></li>
+                    <li class="mb-2"><a href="{% url 'contact' %}" class="text-white-50 text-decoration-none">Контакты</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 3 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="mb-3">Контакты</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="bi bi-geo-alt me-2"></i> г. Москва, ул. Примерная, д. 1
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-telephone me-2"></i> +7 (999) 123-45-67
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-envelope me-2"></i> info@example.com
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Колонка 4 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="mb-3">Подписка</h5>
+                <p>Подпишитесь на наши новости</p>
+                <form>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Копирайт -->
+        <div class="border-top pt-4 mt-4 text-center">
+            <p class="mb-0">&copy; {% now "Y" %} Мой сайт. Все права защищены.</p>
+        </div>
+    </div>
+</footer>

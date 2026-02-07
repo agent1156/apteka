@@ -1,0 +1,62 @@
+[
+  {
+    "model": "news.category",
+    "pk": 1,
+    "fields": {
+      "name": "Политика",
+      "slug": "politics",
+      "description": "Политические новости и аналитика",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 2,
+    "fields": {
+      "name": "Спорт",
+      "slug": "sport",
+      "description": "Спортивные события и результаты",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 1,
+    "fields": {
+      "title": "Новый законопроект",
+      "slug": "new-law-project",
+      "content": "Полный текст новости о новом законопроекте...",
+      "short_description": "В парламенте рассматривается новый законопроект",
+      "category": 1,
+      "author": 1,
+      "status": "published",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z",
+      "published_at": "2024-01-15T12:00:00Z",
+      "views": 150,
+      "tags": "политика, законы",
+      "meta_title": "Новый законопроект - Политические новости",
+      "meta_description": "Обзор нового законопроекта, рассматриваемого в парламенте"
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 2,
+    "fields": {
+      "title": "Футбольный чемпионат",
+      "slug": "football-championship",
+      "content": "Новости о футбольном чемпионате...",
+      "short_description": "Итоги последнего матча чемпионата",
+      "category": 2,
+      "author": 1,
+      "status": "published",
+      "created_at": "2024-01-16T14:30:00Z",
+      "updated_at": "2024-01-16T14:30:00Z",
+      "published_at": "2024-01-16T14:30:00Z",
+      "views": 230,
+      "tags": "спорт, футбол",
+      "meta_title": "Футбольный чемпионат - Спортивные новости",
+      "meta_description": "Итоги последнего матча футбольного чемпионата"
+    }
+  }
+]
