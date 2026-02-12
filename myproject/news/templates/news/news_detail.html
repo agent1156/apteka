@@ -1,11 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
 
-{% block extra_css %}
-<!-- Подключаем CSS для детальной страницы новости -->
-<link rel="stylesheet" href="{% static 'news/css/news_detail.css' %}">
-{% endblock %}
-
 {% block content %}
 <div class="container mt-4">
     <!-- Хлебные крошки -->
@@ -13,122 +8,113 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
             <li class="breadcrumb-item"><a href="#">{{ news.category.name }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ news.title|truncatechars:30 }}</li>
-        </ol>
+            <li class="breadcrumb-item active">{{ news.title|truncatechars:30 }}</li>
+        cd
     </nav>
 
-    <!-- Контейнер детальной новости -->
-    <div class="news-detail-container">
-        <!-- Заголовок новости -->
-        <header class="news-header">
-            <h1 class="display-5 fw-bold">{{ news.title }}</h1>
+    <!-- Детальная новость -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <!-- Заголовок -->
+            <h1 class="card-title display-5 mb-3">{{ news.title }}</h1>
 
             <!-- Мета-информация -->
-            <div class="news-meta">
-                <span class="me-3">
-                    <i class="bi bi-calendar"></i>
-                    {{ news.created_at|date:"d.m.Y H:i" }}
-                </span>
-                <span class="me-3">
-                    <i class="bi bi-eye"></i>
-                    {{ news.views }} просмотров
-                </span>
-                <span class="me-3">
-                    <i class="bi bi-person"></i>
-                    {{ news.author.username|default:"Администратор" }}
-                </span>
-                {% if news.category %}
-                <span class="badge bg-primary">
-                    <i class="bi bi-tag"></i> {{ news.category.name }}
-                </span>
-                {% endif %}
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-4 text-muted">
+                <span><i class="bi bi-calendar"></i> {{ news.created_at|date:"d.m.Y H:i" }}</span>
+                <span><i class="bi bi-eye"></i> {{ news.views }} просмотров</span>
+                <span><i class="bi bi-person"></i> {{ news.author.username|default:"admin" }}</span>
+                <span class="badge bg-primary">{{ news.category.name }}</span>
             </div>
-        </header>
 
-        <!-- Краткое описание -->
-        {% if news.short_description %}
-        <div class="news-summary">
-            <h6 class="fw-bold">Краткое содержание:</h6>
-            <p class="mb-0">{{ news.short_description }}</p>
-        </div>
-        {% endif %}
-
-        <!-- Основной контент -->
-        <div class="news-content mb-5">
-            {{ news.content|linebreaks }}
-        </div>
-
-        <!-- Теги -->
-        {% if news.tags %}
-        <div class="news-tags">
-            <h6><i class="bi bi-tags"></i> Теги:</h6>
-            <div>
-                {% for tag in news.tags.split %}
-                <a href="?tag={{ tag|slugify }}" class="tag-badge">{{ tag }}</a>
-                {% endfor %}
+            <!-- Контент -->
+            <div class="news-content mb-4">
+                {{ news.content|linebreaks }}
             </div>
-        </div>
-        {% endif %}
 
-        <!-- Кнопки навигации -->
-        <div class="news-navigation d-flex justify-content-between">
-            <a href="{% url 'index' %}" class="btn btn-outline-primary">
-                <i class="bi bi-arrow-left"></i> К списку новостей
-            </a>
-
-            <div>
-                <button class="btn print-btn" onclick="window.print()">
-                    <i class="bi bi-printer"></i> Печать
-                </button>
-                <button class="btn btn-outline-secondary share-btn ms-2">
-                    <i class="bi bi-share"></i> Поделиться
-                </button>
+            <!-- Теги -->
+            {% if news.tags %}
+            <div class="mb-4">
+                <h6><i class="bi bi-tags"></i> Теги:</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    {% for tag in news.tags.split %}
+                    <span class="badge bg-secondary">{{ tag }}</span>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
         </div>
+    </div>
+
+    <!-- Кнопки навигации -->
+    <div class="d-flex justify-content-between mb-5">
+        <a href="{% url 'index' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> К списку новостей
+        </a>
+        <button class="btn btn-outline-secondary" onclick="window.print()">
+            <i class="bi bi-printer"></i> Печать
+        </button>
     </div>
 
     <!-- Похожие новости -->
     {% if related_news %}
-    <section class="related-news">
+    <div class="mb-5">
         <h3 class="mb-4">Похожие новости</h3>
-        <div class="row g-3">
+        <div class="row">
             {% for related in related_news %}
-            <div class="col-md-4">
-                <div class="card related-card h-100">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title h6">
-                            <a href="{% url 'news_detail' related.id %}" class="text-decoration-none">
-                                {{ related.title|truncatechars:50 }}
-                            </a>
-                        </h5>
-                        <p class="card-text text-muted small">
-                            <i class="bi bi-calendar"></i> {{ related.created_at|date:"d.m.Y" }}
-                            <span class="ms-2"><i class="bi bi-eye"></i> {{ related.views }}</span>
+                        <h5 class="card-title">{{ related.title }}</h5>
+                        <p class="card-text text-muted small mb-2">
+                            {{ related.created_at|date:"d.m.Y" }} | {{ related.views }} просмотров
                         </p>
-                        <p class="card-text small">{{ related.content|truncatewords:15 }}</p>
+                        <p class="card-text">{{ related.content|truncatewords:20 }}</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="{% url 'news_detail' related.id %}" class="btn btn-sm btn-outline-primary w-100">
-                            Читать
-                        </a>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'news_detail' related.id %}" class="btn btn-primary btn-sm">Читать</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-    </section>
+    </div>
     {% endif %}
 </div>
 
-{% block extra_js %}
-<!-- Подключаем JS для детальной страницы -->
-<script src="{% static 'news/js/news_detail.js' %}"></script>
-<script>
-// Инкремент просмотров при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-    // Увеличиваем счетчик просмотров (если не делается на сервере)
-    // incrementViewCounter({{ news.id }});
-});
-</script>
-{% endblock %}
+<!-- Bootstrap Icons для иконок -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+/* Минимальные стили для разделения блоков */
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.card-title {
+    color: #212529;
+}
+
+.news-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+/* Отступы между элементами */
+.d-flex.gap-3 > * {
+    margin-right: 1rem;
+}
+
+.d-flex.gap-2 > * {
+    margin-right: 0.5rem;
+}
+</style>
 {% endblock %}
