@@ -42,8 +42,8 @@ def login_view(request):
     Вход пользователя в систему
     """
     # Если пользователь уже авторизован, перенаправляем в профиль
-    if request.user.is_authenticated:
-        return redirect('accounts:profile')
+    #if request.user.is_authenticated:
+     #   return redirect('accounts:profile')
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
