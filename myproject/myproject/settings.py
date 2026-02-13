@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-1m0kq%woi*n+c&x1m=l#51f92%3)nvl$!lfc!f1)!(lxeai-p6
 DEBUG = True
 
 ALLOWED_HOSTS = []
+STATIC_URL = '/static/'  # URL для доступа к статике
 
+# 👇 ДЛЯ РАЗРАБОТКИ: где искать статические файлы
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # общая папка статики
+]
 
 # Application definition
 
@@ -122,4 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'  # URL для доступа к статике
+
+# 👇 ДЛЯ РАЗРАБОТКИ: где искать статические файлы
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # общая папка статики
+]
