@@ -6,10 +6,15 @@ from django.contrib.auth import login, logout, authenticate, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
-from .forms import UserRegisterForm, LoginForm, UserEditForm
+from .forms import UserRegisterForm, LoginForm
 from django.contrib.auth.models import User
 
-
+def home(request):
+    context = {
+        'posts': 'Посты',
+        'title': 'Мои посты'
+    }
+    return render(request,'accounts/home.html',context)
 def register_view(request):
     """
     Регистрация нового пользователя

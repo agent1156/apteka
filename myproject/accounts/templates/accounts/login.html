@@ -5,97 +5,118 @@
 
 {% block content %}
 <div class="container text-center">
-  <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="bi bi-shield-lock me-2"></i>Вход в систему
-                    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-shield-lock me-2"></i>Вход в систему
+                </div>
 
-                    <div class="card-body p-4">
-                        <!-- Форма авторизации -->
-                        <form>
-                            <!-- Email -->
-                            <div class="mb-4">
-                                <label for="email" class="form-label fw-semibold">
-                                    <i class="bi bi-envelope me-2"></i>Email
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light">
-                                        <i class="bi bi-envelope"></i>
-                                    </span>
-                                    <input
-                                        type="email"
-                                        class="form-control"
-                                        id="email"
-                                        placeholder="name@example.com"
-                                        required
-                                    >
-                                </div>
-                                <div class="invalid-feedback">
-                                    Пожалуйста, введите корректный email
-                                </div>
+                <div class="card-body p-4">
+                    <!-- ВАЖНО: Добавляем method="post" и csrf_token -->
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Выводим все ошибки формы -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
                             </div>
+                        {% endif %}
 
-                            <!-- Пароль -->
-                            <div class="mb-4">
-                                <label for="password" class="form-label fw-semibold">
-                                    <i class="bi bi-lock me-2"></i>Пароль
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light">
-                                        <i class="bi bi-key"></i>
-                                    </span>
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        id="password"
-                                        placeholder="Введите пароль"
-                                        required
-                                    >
-                                    <button
-                                        class="btn btn-outline-secondary"
-                                        type="button"
-                                        id="togglePassword"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
+                        <!-- Поле username (логин или email) -->
+                        <div class="mb-4">
+                            <label for="{{ form.username.id_for_label }}" class="form-label fw-semibold">
+                                <i class="bi bi-envelope me-2"></i>{{ form.username.label }}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                {{ form.username }}
                             </div>
-
-                            <!-- Запомнить меня и забыли пароль -->
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember">
-                                    <label class="form-check-label" for="remember">
-                                        Запомнить меня
-                                    </label>
+                            <!-- Ошибки поля username -->
+                            {% if form.username.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.username.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
-                                <a href="#" class="text-decoration-none">Забыли пароль?</a>
-                            </div>
+                            {% endif %}
+                        </div>
 
-                            <!-- Кнопка входа -->
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-login">
-                                    <i class="bi bi-box-arrow-in-right me-2"></i>Войти
+                        <!-- Поле пароля -->
+                        <div class="mb-4">
+                            <label for="{{ form.password.id_for_label }}" class="form-label fw-semibold">
+                                <i class="bi bi-lock me-2"></i>{{ form.password.label }}
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-key"></i>
+                                </span>
+                                {{ form.password }}
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    type="button"
+                                    id="togglePassword"
+                                >
+                                    <i class="bi bi-eye"></i>
                                 </button>
                             </div>
+                            <!-- Ошибки поля password -->
+                            {% if form.password.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
 
-                            <!-- Регистрация -->
-                            <div class="text-center mt-4">
-                                <p class="text-muted">
-                                    Нет аккаунта?
-                                    <a href="#" class="text-decoration-none fw-semibold">
-                                        Зарегистрироваться
-                                    </a>
-                                </p>
+                        <!-- Запомнить меня и забыли пароль -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                {{ form.remember_me }}
+                                <label class="form-check-label" for="{{ form.remember_me.id_for_label }}">
+                                    {{ form.remember_me.label }}
+                                </label>
                             </div>
-                        </form>
-                    </div>
+                            <a href="#" class="text-decoration-none">Забыли пароль?</a>
+                        </div>
+
+                        <!-- Кнопка входа -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-login">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Войти
+                            </button>
+                        </div>
+
+                        <!-- Регистрация -->
+                        <div class="text-center mt-4">
+                            <p class="text-muted">
+                                Нет аккаунта?
+                                <a href="{% url 'accounts:register' %}" class="text-decoration-none fw-semibold">
+                                    Зарегистрироваться
+                                </a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 
-
+<!-- Скрипт для показа/скрытия пароля (оставляем как есть) -->
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('{{ form.password.id_for_label }}');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+    });
+</script>
 {% endblock %}
