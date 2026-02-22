@@ -1,0 +1,230 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Электроника",
+      "slug": "elektronika",
+      "parent": null,
+      "description": "Вся современная электроника для дома и офиса",
+      "image": "categories/electronics.jpg",
+      "is_active": true,
+      "sort_order": 1,
+      "meta_title": "Электроника - купить в интернет-магазине",
+      "meta_description": "Широкий выбор электроники по доступным ценам",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Смартфоны",
+      "slug": "smartfony",
+      "parent": 1,
+      "description": "Мобильные телефоны и смартфоны ведущих брендов",
+      "image": "categories/smartphones.jpg",
+      "is_active": true,
+      "sort_order": 2,
+      "meta_title": "Смартфоны - купить в интернет-магазине",
+      "meta_description": "Большой выбор смартфонов с доставкой",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Ноутбуки",
+      "slug": "noutbuki",
+      "parent": 1,
+      "description": "Ноутбуки для работы и развлечений",
+      "image": "categories/laptops.jpg",
+      "is_active": true,
+      "sort_order": 3,
+      "meta_title": "Ноутбуки - купить в интернет-магазине",
+      "meta_description": "Лучшие ноутбуки по выгодным ценам",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Аксессуары",
+      "slug": "aksessuary",
+      "parent": 1,
+      "description": "Аксессуары для электроники",
+      "image": "categories/accessories.jpg",
+      "is_active": true,
+      "sort_order": 4,
+      "meta_title": "Аксессуары для электроники",
+      "meta_description": "Чехлы, защитные стекла и другие аксессуары",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "category": 2,
+      "name": "Xiaomi Redmi Note 12 Pro 8/256GB",
+      "slug": "xiaomi-redmi-note-12-pro-8-256gb",
+      "article": "SM-XIAOMI-001",
+      "barcode": "1234567890123",
+      "price": "29999.00",
+      "purchase_price": "25000.00",
+      "discount_price": "27999.00",
+      "brand": "Xiaomi",
+      "weight": 0.5,
+      "quantity": 50,
+      "description": "Xiaomi Redmi Note 12 Pro - мощный смартфон с отличной камерой",
+      "specifications": {
+        "экран": "6.67 дюймов, AMOLED",
+        "процессор": "MediaTek Dimensity 1080",
+        "память": "8/256 ГБ",
+        "камера": "108 МП",
+        "аккумулятор": "5000 мАч"
+      },
+      "main_image": "products/main/xiaomi-redmi-note-12-pro.jpg",
+      "is_active": true,
+      "is_hit": true,
+      "is_new": true,
+      "is_recommended": true,
+      "views_count": 0,
+      "purchases_count": 0,
+      "rating": "0.00",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z",
+      "published_at": "2024-01-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "category": 2,
+      "name": "Apple iPhone 15 128GB",
+      "slug": "apple-iphone-15-128gb",
+      "article": "SM-APPLE-002",
+      "barcode": "1234567890124",
+      "price": "79990.00",
+      "purchase_price": "70000.00",
+      "discount_price": null,
+      "brand": "Apple",
+      "weight": 0.4,
+      "quantity": 25,
+      "description": "Apple iPhone 15 с инновационными технологиями",
+      "specifications": {
+        "экран": "6.1 дюймов, Super Retina XDR",
+        "процессор": "A16 Bionic",
+        "память": "128 ГБ",
+        "камера": "48 МП",
+        "аккумулятор": "До 20 часов видео"
+      },
+      "main_image": "products/main/iphone-15.jpg",
+      "is_active": true,
+      "is_hit": true,
+      "is_new": true,
+      "is_recommended": true,
+      "views_count": 0,
+      "purchases_count": 0,
+      "rating": "0.00",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z",
+      "published_at": "2024-01-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "category": 3,
+      "name": "ASUS ROG Strix G15 G513",
+      "slug": "asus-rog-strix-g15-g513",
+      "article": "NB-ASUS-001",
+      "barcode": "1234567890125",
+      "price": "129990.00",
+      "purchase_price": "115000.00",
+      "discount_price": "119990.00",
+      "brand": "ASUS",
+      "weight": 2.3,
+      "quantity": 10,
+      "description": "Игровой ноутбук ASUS ROG Strix G15",
+      "specifications": {
+        "экран": "15.6 дюймов, 144 Гц",
+        "процессор": "AMD Ryzen 9 5900HX",
+        "память": "32 ГБ RAM",
+        "видеокарта": "NVIDIA RTX 3070",
+        "SSD": "1 ТБ"
+      },
+      "main_image": "products/main/asus-rog.jpg",
+      "is_active": true,
+      "is_hit": false,
+      "is_new": false,
+      "is_recommended": true,
+      "views_count": 0,
+      "purchases_count": 0,
+      "rating": "0.00",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z",
+      "published_at": "2024-01-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "category": 4,
+      "name": "Чехол для Xiaomi Redmi Note 12 Pro",
+      "slug": "chehol-dlya-xiaomi-redmi-note-12-pro",
+      "article": "ACC-XIAOMI-001",
+      "barcode": "1234567890126",
+      "price": "990.00",
+      "purchase_price": "500.00",
+      "discount_price": "790.00",
+      "brand": "Xiaomi",
+      "weight": 0.1,
+      "quantity": 200,
+      "description": "Защитный чехол для Xiaomi Redmi Note 12 Pro",
+      "specifications": {
+        "материал": "силикон",
+        "цвет": "черный",
+        "совместимость": "Xiaomi Redmi Note 12 Pro"
+      },
+      "main_image": "products/main/case.jpg",
+      "is_active": true,
+      "is_hit": false,
+      "is_new": false,
+      "is_recommended": false,
+      "views_count": 0,
+      "purchases_count": 0,
+      "rating": "0.00",
+      "created_at": "2024-01-15T12:00:00Z",
+      "updated_at": "2024-01-15T12:00:00Z",
+      "published_at": "2024-01-15T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.productimage",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "image": "products/extra/xiaomi-1.jpg",
+      "alt_text": "Xiaomi Redmi Note 12 Pro вид спереди",
+      "is_main": false,
+      "sort_order": 1
+    }
+  },
+  {
+    "model": "catalog.productimage",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "image": "products/extra/xiaomi-2.jpg",
+      "alt_text": "Xiaomi Redmi Note 12 Pro вид сзади",
+      "is_main": false,
+      "sort_order": 2
+    }
+  }
+]
