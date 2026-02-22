@@ -1,0 +1,15 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Товары</h1>
+
+    <div class="row">
+        {% for product in products %}
+            {% include 'catalog/product_card.html' %}
+        {% empty %}
+            <p>Товаров нет</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
