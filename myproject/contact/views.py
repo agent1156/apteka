@@ -56,7 +56,7 @@ def feedback_list(request):
     Представление для списка всех обращений (только для админов)
     """
     # Получаем все обращения, сортируем по дате (новые сверху)
-    feedbacks = Feedback.objects.all().order_by('-created_at')
+    feedbacks = Feedback.objects.all()
 
     # Пагинация - 10 элементов на страницу
     paginator = Paginator(feedbacks, 10)
