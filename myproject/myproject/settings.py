@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'news',
     'accounts',
     'catalog',
-    "contact"
+    "contact",
+    'menu'
 ]
 
 
