@@ -52,7 +52,11 @@ INSTALLED_APPS = [
     'accounts',
     'catalog',
     "contact",
+<<<<<<< HEAD
     'media'
+=======
+    'menu'
+>>>>>>> 2f405554cbb062c39f66d5df2bde2adcd14047ca
 ]
 
 
