@@ -9,9 +9,15 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# MEDIA_ROOT - где хранятся файлы на диске
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_URL - URL для доступа к файлам через браузер
+MEDIA_URL = '/media/'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,7 +51,8 @@ INSTALLED_APPS = [
     'news',
     'accounts',
     'catalog',
-    "contact"
+    "contact",
+    'media'
 ]
 
 
@@ -62,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -69,13 +77,15 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # Можно оставить пустым
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',  # ❗ОБЯЗАТЕЛЬНО ПЕРВЫМ!
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',  # media ДОЛЖЕН быть после debug
             ],
         },
     },

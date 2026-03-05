@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserRegisterForm, LoginForm
 from django.contrib.auth.models import User
+from django import forms
 
 def home(request):
     context = {
@@ -112,3 +113,38 @@ def change_password_view(request):
         form = PasswordChangeForm(request.user)
 
     return render(request, 'accounts/change_password.html', {'form': form})
+
+
+class UserEditForm(forms.ModelForm):
+    """Форма для редактирования данных пользователя"""
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Имя пользователя'
+            }),
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Имя'
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Фамилия'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Email'
+            }),
+        }
+        labels = {
+            'username': 'Логин',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'email': 'Электронная почта',
+        }
+        help_texts = {
+            'username': 'Обязательное поле. Не более 150 символов. Только буквы, цифры и @/./+/-/_',
+        }

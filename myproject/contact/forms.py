@@ -63,9 +63,9 @@ class FeedbackForm(forms.ModelForm):
     def clean_name(self):
         """Валидация имени"""
         name = self.cleaned_data.get('name')
-        if len(name) < 2:
-            raise forms.ValidationError('Имя должно содержать минимум 2 символа')
-        return name.strip().title()
+        if len(name) < 5:
+            raise forms.ValidationError('Имя должно содержать минимум 5 символа')
+        return   name.strip().title()
 
     def clean_message(self):
         """Валидация сообщения"""
