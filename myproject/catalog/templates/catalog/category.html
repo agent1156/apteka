@@ -1,0 +1,5 @@
+<div class="btn-group" role="group" aria-label="Basic example">
+    {% for item in category %}
+        <a href="{{ item.slug }}" class="btn link-primary">{{ item.name }}</a>
+    {% endfor %}
+</div>
